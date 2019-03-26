@@ -1,0 +1,2 @@
+# sawari
+Public service CLI
