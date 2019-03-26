@@ -37,7 +37,7 @@ var Form = cli.Command{
 
 		err := godotenv.Load("sawari.env")
 		if err != nil {
-			if !filepath.IsAbs(inputEnvPath) {go get -u github.com/minhajuddinkhan/sawari/bin/sawari
+			if !filepath.IsAbs(inputEnvPath) {
 				inputEnvPath, err = filepath.Abs(inputEnvPath)
 				if err != nil {
 					return err
@@ -80,7 +80,7 @@ var Form = cli.Command{
 		pdf.SetFont("Arial", "B", 16)
 		err = sawari.MakeHeader(pdf, creds)
 		if err != nil {
-			return err	
+			return err
 		}
 		sawari.MakeBody(pdf, entries, totalAmount)
 		oFilePath := "form.pdf"
