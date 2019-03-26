@@ -1,7 +1,10 @@
 package sawari
 
 import (
+	"path/filepath"
 	"time"
+
+	"github.com/davecgh/go-spew/spew"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -21,9 +24,14 @@ const (
 )
 
 // MakeHeader generates header
-func MakeHeader(pdf *gofpdf.Fpdf, creds Creds) {
+func MakeHeader(pdf *gofpdf.Fpdf, creds Creds) error {
 
-	pdf.ImageOptions("assets/10p.png", imageX, imageY, 40, 40, true, gofpdf.ImageOptions{}, 0, "")
+	fb, err := filepath.Abs("../sawari/assets/10p.png")
+	spew.Dump(fb)
+	if err != nil {
+		return err
+	}
+	pdf.ImageOptions(fb, imageX, imageY, 40, 40, true, gofpdf.ImageOptions{}, 0, "")
 	pdf.SetXY(titleX, titleY)
 	pdf.Write(1, title)
 
@@ -49,6 +57,7 @@ func MakeHeader(pdf *gofpdf.Fpdf, creds Creds) {
 	pdf.Write(1, "Note:")
 	pdf.SetXY(60, 80)
 	pdf.Write(1, "Don't forget to attach receipts!")
+	return nil
 
 }
 

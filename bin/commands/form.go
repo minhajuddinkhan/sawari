@@ -78,13 +78,18 @@ var Form = cli.Command{
 		pdf := gofpdf.New("P", "mm", "A4", "")
 		pdf.AddPage()
 		pdf.SetFont("Arial", "B", 16)
-		sawari.MakeHeader(pdf, creds)
+		err = sawari.MakeHeader(pdf, creds)
+		if err != nil {
+			return err
+		}
 		sawari.MakeBody(pdf, entries, totalAmount)
-		err = pdf.OutputFileAndClose("hello.pdf")
+		oFilePath := "form.pdf"
+		err = pdf.OutputFileAndClose(oFilePath)
 		if err != nil {
 			log.Fatal(err)
 		}
-
+		fp, _ := filepath.Abs(oFilePath)
+		color.Blue("Your pdf can be found at %s", fp)
 		return nil
 	},
 }
