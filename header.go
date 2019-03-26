@@ -2,12 +2,9 @@ package sawari
 
 import (
 	"bytes"
-	"path/filepath"
 	"time"
 
 	"github.com/minhajuddinkhan/sawari/assets"
-
-	"github.com/davecgh/go-spew/spew"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -28,12 +25,6 @@ const (
 
 // MakeHeader generates header
 func MakeHeader(pdf *gofpdf.Fpdf, creds Creds) error {
-
-	fb, err := filepath.Abs("../sawari/assets/10p.png")
-	spew.Dump(fb)
-	if err != nil {
-		return err
-	}
 
 	reader := bytes.NewReader(assets.Image1)
 	pdf.RegisterImageOptionsReader("abc.png", gofpdf.ImageOptions{
