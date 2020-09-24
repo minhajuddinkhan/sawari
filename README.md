@@ -22,7 +22,7 @@ sudo mv sawari-linux /bin/sawari
 ``` bash
 curl https://github.com/minhajuddinkhan/sawari/releases/download/v1.0/sawari-darwin -Lo sawari
 chmod +x sawari
-cp sawari usr/local/bin/
+cp sawari /usr/local/bin/
 ```
 
 ## Usage
